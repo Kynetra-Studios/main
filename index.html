@@ -1,1 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduNote — LMS Abierto para Instituciones, Empresas y Comunidad</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/index.min.css" />
+<style>
+  :root{
+    --primary:#FF2442;
+    --primary-dark:#E01E3A;
+    --bg:#FAFAFA;
+    --ink:#1F1F1F;
+    --muted:#6B6B6B;
+  }
+  *{font-family:'Inter',system-ui,-apple-system,sans-serif;}
+  body{background:var(--bg);color:var(--ink);}
+  .brand{color:var(--primary);}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid #EEE;}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+  .masonry{column-count:1;column-gap:16px;}
+  @media(min-width:640px){.masonry{column-count:2;}}
+  @media(min-width:1024px){.masonry{column-count:3;}}
+  @media(min-width:1280px){.masonry{column-count:4;}}
+  .card{break-inside:avoid;margin-bottom:16px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#FFF1F3;color:var(--primary);font-size:12px;font-weight:500;}
+  .tab-active{color:var(--primary);border-bottom:2px solid var(--primary);}
+  .fade-in{animation:fade .5s ease both;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .scroll-hide::-webkit-scrollbar{display:none;}
+  details[open] summary .chev{transform:rotate(180deg);}
+  .chev{transition:transform .25s;}
+  .gradient-bg{background:linear-gradient(135deg,#FFF1F3 0%,#FFE4E8 50%,#FFF 100%);}
+  .dot{width:8px;height:8px;border-radius:999px;background:var(--primary);}
+</style>
+</head>
+<body class="antialiased">
 
+<!-- NAVBAR -->
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4">
+    <a href="#" class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-xl bg-[#FF2442] text-white flex items-center justify-center font-bold">E</div>
+      <span class="font-bold text-lg">Edu<span class="brand">Note</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 ml-6">
+      <a href="#features" class="hover:text-[#FF2442]">Características</a>
+      <a href="#roles" class="hover:text-[#FF2442]">Roles</a>
+      <a href="#pricing" class="hover:text-[#FF2442]">Planes</a>
+      <a href="#legal" class="hover:text-[#FF2442]">Legal</a>
+    </nav>
+    <div class="flex-1 max-w-md mx-auto hidden md:block">
+      <div class="relative">
+        <input type="text" placeholder="Buscar cursos, instituciones, habilidades…" class="w-full h-10 pl-10 pr-4 rounded-full bg-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-[#FF2442]/30"/>
+        <svg class="absolute left-3 top-3 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+      </div>
+    </div>
+    <button onclick="openModal('login')" class="hidden sm:inline-flex text-sm font-medium text-gray-700 hover:text-[#FF2442]">Iniciar sesión</button>
+    <button onclick="openModal('register')" class="btn-primary text-sm font-medium px-4 py-2 rounded-full">Registrarse</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="gradient-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+    <div class="fade-in">
+      <span class="chip">🚀 LMS abierto y gratuito para la comunidad</span>
+      <h1 class="mt-4 text-4xl md:text-5xl font-extrabold leading-tight">
+        Aprende, enseña y gestiona <span class="brand">sin límites</span>
+      </h1>
+      <p class="mt-5 text-gray-600 text-lg max-w-xl">
+        Una plataforma educativa abierta para instituciones, empresas y cualquier persona que quiera aprender. Crea cursos, certifica competencias y conecta con una comunidad global.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <button onclick="openModal('register')" class="btn-primary px-6 py-3 rounded-full font-semibold shadow-lg shadow-red-200">Crear cuenta gratis</button>
+        <a href="#features" class="btn-ghost px-6 py-3 rounded-full font-semibold">Explorar características</a>
+      </div>
+      <div class="mt-8 flex items-center gap-6 text-sm text-gray-500">
+        <div class="flex -space-x-2">
+          <div class="w-8 h-8 rounded-full bg-[#FF2442] border-2 border-white"></div>
+          <div class="w-8 h-8 rounded-full bg-pink-300 border-2 border-white"></div>
+          <div class="w-8 h-8 rounded-full bg-orange-300 border-2 border-white"></div>
+        </div>
+        <div><b class="text-gray-800">+120.000</b> usuarios activos</div>
+        <div class="w-px h-6 bg-gray-300"></div>
+        <div><b class="text-gray-800">4.9★</b> en la comunidad</div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <img src="https://image.qwenlm.ai/public_source/2ae5ce0b-209f-4561-bd28-018fe767b244/1bd1a0413-8016-42a5-a479-3f12191bf558.png" alt="Panel EduNote" class="rounded-3xl shadow-2xl shadow-red-100 w-full"/>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES MASONRY (estilo RedNote) -->
+<section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+  <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
+    <div>
+      <span class="chip">✨ Todo lo que necesitas</span>
+      <h2 class="mt-3 text-3xl md:text-4xl font-extrabold">Características clave del LMS</h2>
+      <p class="text-gray-500 mt-2">Diseñado para docentes, empresas, instituciones y aprendices independientes.</p>
+    </div>
+    <div class="flex gap-2 overflow-x-auto scroll-hide">
+      <button class="tab-active px-4 py-2 text-sm font-medium whitespace-nowrap">Todas</button>
+      <button class="px-4 py-2 text-sm font-medium text-gray-500 whitespace-nowrap hover:text-[#FF2442]">Aprendizaje</button>
+      <button class="px-4 py-2 text-sm font-medium text-gray-500 whitespace-nowrap hover:text-[#FF2442]">Gestión</button>
+      <button class="px-4 py-2 text-sm font-medium text-gray-500 whitespace-nowrap hover:text-[#FF2442]">Comunidad</button>
+    </div>
+  </div>
+
+  <div class="masonry">
+    <!-- Card 1 -->
+    <div class="card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+      <img src="https://image.qwenlm.ai/public_source/2ae5ce0b-209f-4561-bd28-018fe767b244/1d3e651de-ef47-41a5-81c9-f31342000654.png" class="w-full"/>
+      <div class="p-4">
+        <span class="chip">🎓 Estudiantes</span>
+        <h3 class="mt-2 font-bold">Aprendizaje adaptativo</h3>
+        <p class="text-sm text-gray-500 mt-1">Rutas personalizadas con IA, recomendaciones y progreso visible en tiempo real.</p>
+        <div class="mt-3 flex items-center justify-between text-xs text-gray-400">
+          <span>❤️ 12.4k</span><span>💬 842</span>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">‍🏫 Docentes</span>
+      <h3 class="mt-2 font-bold">Constructor de cursos</h3>
+      <ul class="mt-2 text-sm text-gray-600 space-y-1">
+        <li>• Videos, PDFs, SCORM, H5P</li>
+        <li>• Evaluaciones con rúbricas</li>
+        <li>• Tareas con feedback en audio/video</li>
+        <li>• Plantillas y reutilización</li>
+      </ul>
+      <div class="mt-3 text-xs text-gray-400">❤️ 8.1k · 💬 412</div>
+    </div>
+    <!-- Card 3 -->
+    <div class="card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+      <img src="https://image.qwenlm.ai/public_source/2ae5ce0b-209f-4561-bd28-018fe767b244/147363626-af35-49c8-98e4-60bb293c8e74.png" class="w-full"/>
+      <div class="p-4">
+        <span class="chip">📡 En vivo</span>
+        <h3 class="mt-2 font-bold">Aulas virtuales integradas</h3>
+        <p class="text-sm text-gray-500 mt-1">Videoconferencia, pizarra colaborativa, breakout rooms y grabación automática.</p>
+        <div class="mt-3 text-xs text-gray-400">❤️ 5.6k · 💬 221</div>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">🏢 Empresas</span>
+      <h3 class="mt-2 font-bold">Capacitación corporativa</h3>
+      <ul class="mt-2 text-sm text-gray-600 space-y-1">
+        <li>• Onboarding automatizado</li>
+        <li>• Planes por departamento</li>
+        <li>• Certificaciones internas</li>
+        <li>• Integración con HR (SAP, Workday)</li>
+      </ul>
+      <div class="mt-3 text-xs text-gray-400">❤️ 3.9k · 💬 180</div>
+    </div>
+    <!-- Card 5 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip"> Analítica</span>
+      <h3 class="mt-2 font-bold">Reportes y dashboards</h3>
+      <p class="text-sm text-gray-500 mt-1">KPIs por curso, estudiante, instructor o empresa. Exporta a CSV/PDF o consume vía API.</p>
+      <div class="mt-3 text-xs text-gray-400">❤️ 2.7k · 💬 98</div>
+    </div>
+    <!-- Card 6 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">🔐 Seguridad</span>
+      <h3 class="mt-2 font-bold">SSO, 2FA y roles granulares</h3>
+      <ul class="mt-2 text-sm text-gray-600 space-y-1">
+        <li>• OAuth2 / SAML / OpenID</li>
+        <li>• Control por institución</li>
+        <li>• Auditoría completa</li>
+      </ul>
+      <div class="mt-3 text-xs text-gray-400">❤️ 1.8k · 💬 64</div>
+    </div>
+    <!-- Card 7 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">🌐 Comunidad</span>
+      <h3 class="mt-2 font-bold">Foros, grupos y mentorías</h3>
+      <p class="text-sm text-gray-500 mt-1">Red social educativa con publicaciones, likes, comentarios y mentorías 1:1.</p>
+      <div class="mt-3 text-xs text-gray-400">❤️ 9.2k · 💬 1.1k</div>
+    </div>
+    <!-- Card 8 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">📱 Móvil</span>
+      <h3 class="mt-2 font-bold">Apps iOS y Android</h3>
+      <p class="text-sm text-gray-500 mt-1">Aprende offline, recibe notificaciones push y sincroniza tu progreso en la nube.</p>
+      <div class="mt-3 text-xs text-gray-400">❤️ 6.4k · 💬 310</div>
+    </div>
+    <!-- Card 9 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip"> Integraciones</span>
+      <h3 class="mt-2 font-bold">LTI, xAPI, Caliper, SCORM</h3>
+      <ul class="mt-2 text-sm text-gray-600 space-y-1">
+        <li>• Conecta con Google Classroom</li>
+        <li>• Microsoft Teams / Zoom</li>
+        <li>• Webhooks y REST API</li>
+      </ul>
+      <div class="mt-3 text-xs text-gray-400">❤️ 1.4k · 💬 52</div>
+    </div>
+    <!-- Card 10 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">️ Instituciones</span>
+      <h3 class="mt-2 font-bold">Multi-tenant y white-label</h3>
+      <p class="text-sm text-gray-500 mt-1">Cada institución tiene su espacio, branding, dominio propio y administración independiente.</p>
+      <div class="mt-3 text-xs text-gray-400">❤️ 2.1k · 💬 77</div>
+    </div>
+    <!-- Card 11 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip"> Gamificación</span>
+      <h3 class="mt-2 font-bold">Insignias, puntos y rankings</h3>
+      <p class="text-sm text-gray-500 mt-1">Motiva a tus estudiantes con logros desbloqueables y tablas de clasificación.</p>
+      <div class="mt-3 text-xs text-gray-400">❤️ 4.3k · 💬 201</div>
+    </div>
+    <!-- Card 12 -->
+    <div class="card bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition">
+      <span class="chip">♿ Accesibilidad</span>
+      <h3 class="mt-2 font-bold">WCAG 2.1 AA</h3>
+      <ul class="mt-2 text-sm text-gray-600 space-y-1">
+        <li>• Subtítulos automáticos</li>
+        <li>• Lector de pantalla</li>
+        <li>• Alto contraste y tamaños</li>
+      </ul>
+      <div class="mt-3 text-xs text-gray-400">❤️ 1.1k · 💬 38</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles" class="bg-white border-y border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+    <div class="text-center">
+      <span class="chip">👥 Para todos los roles</span>
+      <h2 class="mt-3 text-3xl md:text-4xl font-extrabold">Una plataforma, infinitas posibilidades</h2>
+      <p class="text-gray-500 mt-2 max-w-2xl mx-auto">Diseñada para adaptarse a cada actor del ecosistema educativo y corporativo.</p>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Docente -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-red-50 text-[#FF2442] flex items-center justify-center text-2xl">👩‍🏫</div>
+        <h3 class="mt-4 font-bold text-lg">Docentes e Instructores</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Creación de cursos con multimedia</li>
+          <li>✅ Evaluaciones, rúbricas y retroalimentación</li>
+          <li>✅ Aula virtual con pizarra y breakout rooms</li>
+          <li>✅ Biblioteca de recursos reutilizables</li>
+          <li>✅ Analítica de desempeño por estudiante</li>
+          <li>✅ Certificación y emisión de diplomas</li>
+          <li>✅ Monetización de cursos (opcional)</li>
+        </ul>
+      </div>
+      <!-- Coordinador -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-2xl">🧭</div>
+        <h3 class="mt-4 font-bold text-lg">Coordinadores Académicos</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Gestión de planes de estudio</li>
+          <li>✅ Asignación de docentes y grupos</li>
+          <li>✅ Calendario académico unificado</li>
+          <li>✅ Reportes de avance por programa</li>
+          <li>✅ Aprobación y revisión de contenidos</li>
+          <li>✅ Comunicación masiva con estudiantes</li>
+          <li>✅ Control de calidad pedagógica</li>
+        </ul>
+      </div>
+      <!-- Administrador empresa -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl">🏢</div>
+        <h3 class="mt-4 font-bold text-lg">Administradores de Empresa</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Onboarding y capacitación por área</li>
+          <li>✅ Gestión de competencias y habilidades</li>
+          <li>✅ Reportes de cumplimiento normativo</li>
+          <li>✅ Integración con HR y nómina</li>
+          <li>✅ Presupuestos y licencias por equipo</li>
+          <li>✅ Evaluaciones 360° y planes de mejora</li>
+          <li>✅ Certificaciones internas y externas</li>
+        </ul>
+      </div>
+      <!-- Empleado -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl"></div>
+        <h3 class="mt-4 font-bold text-lg">Empleados</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Plan de formación personalizado</li>
+          <li>✅ Cursos obligatorios y optativos</li>
+          <li>✅ Aprendizaje móvil y offline</li>
+          <li>✅ Insignias y certificaciones</li>
+          <li>✅ Mentorías y comunidades de práctica</li>
+          <li>✅ Seguimiento de progreso</li>
+        </ul>
+      </div>
+      <!-- Estudiante institucional -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">🎓</div>
+        <h3 class="mt-4 font-bold text-lg">Estudiantes (Instituciones)</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Matrícula y horarios automáticos</li>
+          <li>✅ Acceso a contenidos del programa</li>
+          <li>✅ Entrega de tareas y exámenes</li>
+          <li>✅ Calificaciones y historial académico</li>
+          <li>✅ Trámites y certificados digitales</li>
+          <li>✅ Tutorías y apoyo académico</li>
+        </ul>
+      </div>
+      <!-- Estudiante independiente -->
+      <div class="rounded-2xl border border-gray-100 p-6 hover:border-[#FF2442] transition">
+        <div class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-2xl">🌱</div>
+        <h3 class="mt-4 font-bold text-lg">Aprendices Independientes</h3>
+        <ul class="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✅ Registro libre y gratuito</li>
+          <li>✅ Catálogo abierto de cursos</li>
+          <li>✅ Rutas de aprendizaje con IA</li>
+          <li>✅ Certificaciones reconocidas</li>
+          <li>✅ Portafolio público de logros</li>
+          <li>✅ Conexión con mentores globales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+  <div class="text-center">
+    <span class="chip">💡 Planes flexibles</span>
+    <h2 class="mt-3 text-3xl md:text-4xl font-extrabold">Empieza gratis, escala cuando crezcas</h2>
+  </div>
+  <div class="mt-10 grid md:grid-cols-3 gap-5">
+    <div class="rounded-2xl border border-gray-100 p-6">
+      <h3 class="font-bold text-lg">Comunidad</h3>
+      <p class="text-gray-500 text-sm mt-1">Para aprendices independientes</p>
+      <div class="mt-4 text-3xl font-extrabold">Gratis</div>
+      <ul class="mt-4 text-sm text-gray-600 space-y-2">
+        <li>✓ Cursos abiertos ilimitados</li>
+        <li>✓ Perfil y portafolio</li>
+        <li>✓ Comunidad y foros</li>
+        <li>✓ Certificados básicos</li>
+      </ul>
+      <button onclick="openModal('register')" class="mt-6 btn-ghost w-full py-2.5 rounded-full font-semibold">Crear cuenta</button>
+    </div>
+    <div class="rounded-2xl border-2 border-[#FF2442] p-6 relative">
+      <span class="absolute -top-3 right-6 bg-[#FF2442] text-white text-xs px-3 py-1 rounded-full">Más popular</span>
+      <h3 class="font-bold text-lg">Institución</h3>
+      <p class="text-gray-500 text-sm mt-1">Escuelas, universidades, ONGs</p>
+      <div class="mt-4 text-3xl font-extrabold">$0 <span class="text-base font-normal text-gray-500">/ mes (plan abierto)</span></div>
+      <ul class="mt-4 text-sm text-gray-600 space-y-2">
+        <li>✓ Multi-tenant y white-label</li>
+        <li>✓ Roles académicos completos</li>
+        <li>✓ Analítica avanzada</li>
+        <li>✓ Soporte prioritario</li>
+        <li>✓ Integraciones LTI/SCORM</li>
+      </ul>
+      <button onclick="openModal('register')" class="mt-6 btn-primary w-full py-2.5 rounded-full font-semibold">Solicitar acceso</button>
+    </div>
+    <div class="rounded-2xl border border-gray-100 p-6">
+      <h3 class="font-bold text-lg">Empresa</h3>
+      <p class="text-gray-500 text-sm mt-1">Capacitación corporativa</p>
+      <div class="mt-4 text-3xl font-extrabold">Desde $299 <span class="text-base font-normal text-gray-500">/ mes</span></div>
+      <ul class="mt-4 text-sm text-gray-600 space-y-2">
+        <li>✓ SSO y HRIS integrations</li>
+        <li>✓ Reportes de cumplimiento</li>
+        <li>✓ SLA 99.9% y soporte 24/7</li>
+        <li>✓ API y webhooks</li>
+      </ul>
+      <button onclick="openModal('register')" class="mt-6 btn-ghost w-full py-2.5 rounded-full font-semibold">Contactar ventas</button>
+    </div>
+  </div
